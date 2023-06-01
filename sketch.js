@@ -164,13 +164,21 @@ function draw() {
 }
 
 function freeze() {
+  const playButton = document.getElementById('playButton');
   isFrozen = !isFrozen;
+  playButton.innerHTML = (isFrozen) ? 'Play ⏵' : 'Pause ⏸';
+
   for (let i = 0; i < BubbleList.length; i++) {
     BubbleList[i].freeze(isFrozen);
   }
 }
 
 function startBetterView() {
+  isFrozen = false;
+  playButton.innerHTML = 'Pause ⏸';
+  for (let i = 0; i < BubbleList.length; i++) {
+    BubbleList[i].freeze(false);
+  }
   for (let i = 0; i < BubbleList.length; i++) {
     BubbleList[i].x = width / 2 + random(-50, 50);
     BubbleList[i].y = height / 2 + random(-50, 50);
@@ -186,5 +194,14 @@ function startBetterView() {
 
     BubbleList[i].velX = velX;
     BubbleList[i].velY = velY;
+  }
+}
+
+function randomPos() {
+  for(bubble of BubbleList) {
+    bubble.x = random(DEFAULT_RADIUS, width - DEFAULT_RADIUS);
+    bubble.y = random(DEFAULT_RADIUS, height - DEFAULT_RADIUS);
+    bubble.velX = random(-0.25, 0.25);
+    bubble.velY = random(-0.25, 0.25);
   }
 }

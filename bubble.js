@@ -47,8 +47,14 @@ class Bubble {
         this.x += this.velX;
         this.y += this.velY;
 
-        if (this.x > width + changeDistance - this.r || this.x < this.r - changeDistance) this.velX *= -1;
-        if (this.y > height + changeDistance - this.r || this.y < this.r - changeDistance) this.velY *= -1;
+        if (this.x > width + changeDistance - this.r || this.x < this.r - changeDistance) {
+            this.velX *= -1;
+            this.x = constrain(this.x, this.r - changeDistance, width + changeDistance - this.r);
+        }
+        if (this.y > height + changeDistance - this.r || this.y < this.r - changeDistance) {
+            this.velY *= -1;
+            this.y = constrain(this.y, this.r - changeDistance, height + changeDistance - this.r);
+        }
 
     }
 
