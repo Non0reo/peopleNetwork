@@ -1,4 +1,6 @@
 const CONFUSION_MODE = true; //change this to true to see the number of friends instead of the number of friends + me
+const changeDistance = 0;
+
 
 class Bubble {
     constructor(id, x, y, r, color, name) {
@@ -45,8 +47,8 @@ class Bubble {
         this.x += this.velX;
         this.y += this.velY;
 
-        if (this.x > width - this.r || this.x < this.r) this.velX *= -1;
-        if (this.y > height - this.r || this.y < this.r) this.velY *= -1;
+        if (this.x > width + changeDistance - this.r || this.x < this.r - changeDistance) this.velX *= -1;
+        if (this.y > height + changeDistance - this.r || this.y < this.r - changeDistance) this.velY *= -1;
 
     }
 
@@ -57,6 +59,8 @@ class Bubble {
     drag() {
         this.x = mouseX;
         this.y = mouseY;
+
+        return true;
     }
 
     freeze(isFrozen) {
